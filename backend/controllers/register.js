@@ -8,12 +8,12 @@ class Register {
         this.lastName = lastName;
         this.userName = userName;
         this.email = email;
-        this.password = bcrypt.hashSync(password, 5);
+        this.password = password;
     }
     
     // Method to register an user
     async register() {
-
+        const salt = await bcrypt.genSalt(10);
 
         // Create a new user
         try {
@@ -22,9 +22,9 @@ class Register {
                 lastName:this.lastName,
                 userName:this.userName,
                 email:this.email,
-                password:this.password 
+                password:await bcrypt.hash(this.password, salt)
             })
-            return (user)
+            return (user, "User was register")
         } catch(err) {
             console.log(err)
             return {error: 'Internal server error', err}

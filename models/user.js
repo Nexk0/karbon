@@ -22,14 +22,24 @@ const User = sequelize.define('user', {
         unique: true
     },
     email: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            isEmail: true,
-            unique: true  
+        type: Sequelize.STRING,
+        allowNull: false,
+        isEmail: true,
+        unique: true  
       },
       password: {
-            type: Sequelize.STRING(64),
-            allowNull: false,
+        type: Sequelize.STRING(64),
+        allowNull: false,
+      },
+      score: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
+      },
+      o2: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
       }
   }, {
     // Other model options go here
