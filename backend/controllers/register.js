@@ -1,14 +1,16 @@
 import User from '../../models/user.js'
 import bcrypt from 'bcrypt'
+import express from 'express'
 
 // Class to register an user
 class Register {
-    constructor(firstName, lastName, userName, email, password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
+    constructor(request, response) {
+        this.firstName = request.body.firstName
+        this.lastName = request.body.lastName 
+        this.userName = request.body.userName 
+        this.email = request.body.email
+        this.password = request.body.password
+        this.response = response
     }
     
     // Method to register an user
@@ -24,10 +26,10 @@ class Register {
                 email:this.email,
                 password:await bcrypt.hash(this.password, salt)
             })
-            return (user, "User was register")
+            this.response.status(200).json({user,"msg":"User created"});
         } catch(err) {
             console.log(err)
-            return {error: 'Internal server error', err}
+            this.response.status(401).json({"msg":"Couldnt create account", err});
         }
     }
 }

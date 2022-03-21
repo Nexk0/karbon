@@ -36,7 +36,7 @@ const User = sequelize.define('user', {
         allowNull: true,
         defaultValue: 0,
       },
-      o2: {
+      co2e: {
         type: Sequelize.INTEGER,
         allowNull: true,
         defaultValue: 0,
