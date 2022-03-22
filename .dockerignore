@@ -105,3 +105,8 @@ dist
 
 #Remove db
 ._mysql_data_dir
+
+#Remove yml
+configmap.yml
+deployment.yml
+service.yml
