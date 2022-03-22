@@ -2,28 +2,25 @@ import User from '../../models/user.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import Questions from '../../models/questions.js'
 
 // Class to login an user
-  class Dashboard {
+  class GetBaseQuestion {
     constructor(request, response) {
         this.user = request.user
         this.response = response
     }
     
     // Method to login an user
-    async dashboard() {
+    async getBaseQuestion() {
         // invalid token - synchronous
         try {
-            const user = await User.findOne({ 
-                where : {
-                id:this.user.id,
-                }
-            });
-            this.response.status(200).json({ user: user })
+            const questions = await Questions.findAll();
+            this.response.status(200).json({ questions: questions })
         } catch(err){
-            this.response.status(401).json({ err : "Username or Password incorrect" })
+            this.response.status(401).json({ err })
         }
     }
 }
 
-export default Dashboard;
+export default GetBaseQuestion;

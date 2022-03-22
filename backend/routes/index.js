@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import Dashboard from '../controllers/dashboard.js'
 import AddQuestion from '../controllers/addQuestion.js'
 import authenticateToken from '../lib/index.js'
+import GetBaseQuestion from '../controllers/getBaseQuestions.js'
 
 
 
@@ -31,5 +32,8 @@ router.post('/add_question',async(req,res,next)=>{
     const response = await new AddQuestion(req, res).addQuestion()
 })
 
+router.get('/get_base_question', authenticateToken,async(req,res,next)=>{
+    const response = await new GetBaseQuestion(req, res).getBaseQuestion()
+})
 
 export default router
