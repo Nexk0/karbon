@@ -11,14 +11,6 @@ const Questions = sequelize.define('questions', {
     questionId: {
         type: Sequelize.INTEGER,
         allowNull: false
-    },
-    scoreadd: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    co2eadd: {
-        type: Sequelize.STRING,
-        allowNull: false,
     }
   }, {
     // Other model options go here

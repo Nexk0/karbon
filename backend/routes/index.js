@@ -3,6 +3,8 @@ import Register from '../controllers/register.js'
 import Login from '../controllers/login.js'
 import jwt from 'jsonwebtoken'
 import Dashboard from '../controllers/dashboard.js'
+import AddQuestion from '../controllers/addQuestion.js'
+import authenticateToken from '../lib/index.js'
 
 
 
@@ -20,25 +22,14 @@ router.post('/login', async (req, res, next) => {
     const response = await new Login(req, res).login()
 })
 
-router.post('/dashboard',async(req,res,next)=>{
-    const {token} = req.body
-    const response = await new Dashboard(token).dashboard()
-    res.json(response)
-    // try {
-    //     let token = req.headers['Authorization'].split(" ")[1];
-    //     let decoded = jwt.verify(`${process.env.JWT_SECRET_KEY}`);
-    //     req.user = decoded;
-    //     next();
-    // } catch(err){
-    //     res.status(401).json({"msg":"Couldnt Authenticate", error});
-    // }
-    // },
-    // async(req,res,next)=>{
-    //     let user = await User.findOne({where:{id : req.user.id},attributes:{exclude:["password"]}});
-    //     if(user === null){
-    //     res.status(404).json({'msg':"User not found"});
-    //     }
-    //     res.status(200).json(user);
-    }); 
+router.post('/dashboard', authenticateToken,async(req,res,next)=>{
+    const response = await new Dashboard(req, res).dashboard()
+})
+
+
+router.post('/add_question',async(req,res,next)=>{
+    const response = await new AddQuestion(req, res).addQuestion()
+})
+
 
 export default router
