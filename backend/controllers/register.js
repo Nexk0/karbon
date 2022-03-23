@@ -9,6 +9,7 @@ class Register {
         this.lastName = request.body.lastName 
         this.userName = request.body.userName 
         this.email = request.body.email
+        this.age = request.body.age
         this.password = request.body.password
         this.response = response
     }
@@ -24,6 +25,7 @@ class Register {
                 lastName:this.lastName,
                 userName:this.userName,
                 email:this.email,
+                age:this.age,
                 password:await bcrypt.hash(this.password, salt)
             })
             this.response.status(200).json({user,"msg":"User created"});

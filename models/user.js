@@ -27,20 +27,39 @@ const User = sequelize.define('user', {
         isEmail: true,
         unique: true  
       },
-      password: {
-        type: Sequelize.STRING(64),
-        allowNull: false,
-      },
-      score: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0,
-      },
-      co2e: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0,
-      }
+    age: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    password: {
+      type: Sequelize.STRING(64),
+      allowNull: false,
+    },
+    hasRespondedToBaseQuestion: {
+      type: Sequelize.BOOLEAN,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    hasRespondedTodailyquizz: {
+      type: Sequelize.BOOLEAN,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    isAdmin: {
+      type: Sequelize.BOOLEAN,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    score: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    co2e: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    }
   }, {
     // Other model options go here
   });
