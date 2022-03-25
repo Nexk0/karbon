@@ -1,0 +1,10 @@
+{
+    "development": {
+      "username": "klrpierre",
+      "password": "nJ4PtxJQdNXE4jMq",
+      "database": "karbondb",
+      "port": 3306,
+      "host": "mariadb.host",
+      "dialect": "mysql"
+    }
+  }
